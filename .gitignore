@@ -2,5 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/appsettings.Development.json
+/bin/Debug/netcoreapp2.1
+/obj/Container
+/obj
 /DEV_dashboard_2019.csproj.user
+/appsettings.Development.json
