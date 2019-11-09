@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DEV_dashboard_2019.Models;
 using MvcMovie.Data;
+using DEV_dashboard_2019.Factory;
 
 namespace DEV_dashboard_2019.Controllers
 {

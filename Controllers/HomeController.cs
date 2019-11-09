@@ -20,8 +20,9 @@ namespace DEV_dashboard_2019.Controllers
         }
 
         [Authorize]
-        public IActionResult Index()
+        public IActionResult Index(string username)
         {
+            ViewData["username"] = username;
             return View();
         }
 
