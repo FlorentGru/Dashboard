@@ -14,22 +14,24 @@
 <body>
     @if (Model.Success)
     {
-
-        <h2>@Html.DisplayFor(model => model.GameName) Achievements</h2>
-        <dl class="row">
+    <div class="shadow p-3 s-5 bg-white rounded border" style="width:555px;border">
+        <h3>@Html.DisplayFor(model => model.GameName) Achievements</h3>
+        <div class="row" style="width:550px;height:400px;overflow-y:scroll;overflow-x:hidden">
             @foreach (var item in Model.Achievements)
             {
-                @if (item.Achieved == 0)
+                @if (item.Achieved == 1)
                 {
-                    <dt class="col-sm-3">
+                    <div class="col-sm-5">
                         @Html.DisplayFor(model => item.Name)
-                    </dt>
+                    </div>
                 }
             }
-        </dl>
-    } else
+        </div>
+    </div>
+    }
+    else
     {
-        <h2>Choose a public steam account</h2>
+        <h2>@ViewData["Error"]</h2>
     }
 
 </body>
