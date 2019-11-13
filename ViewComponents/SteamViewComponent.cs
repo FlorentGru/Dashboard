@@ -29,17 +29,19 @@ namespace DEV_dashboard_2019.ViewComponents
             if (!String.IsNullOrEmpty(username))
             {
                 var response = await SteamApiClientFactory.Instance.GetSteamId(username);
-                steamId = response.Response;
-                if (steamId.Success == 42)
+                if (response.Response.Success == 42)
                 {
                     ViewData["Error"] = "No match";
                     return View(playerAchievementError);
                 }
 
                 if (_context.SteamId.Any()) {
+                    steamId = _context.SteamId.First();
+                    steamId.Id = response.Response.Id;
                     _context.SteamId.Update(steamId);
                 } else
                 {
+                    steamId = response.Response;
                     _context.SteamId.Add(steamId);
                 }
                 await _context.SaveChangesAsync();
@@ -80,14 +82,10 @@ namespace DEV_dashboard_2019.ViewComponents
                 if (e.HResult == 403)
                 {
                     ViewData["Error"] = "The account must be public.";
-                } else if (e.HResult == 400)
-                {
-                    ViewData["Error"] = "No stats for this account on this game.";
                 } else
                 {
-                    ViewData["Error"] = "Error fetching the data.";
+                    ViewData["Error"] = "No stats for this account on this game.";
                 }
-
             }
             return View(playerAchievementError);
         }
