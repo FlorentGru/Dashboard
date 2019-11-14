@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+echo "TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
 run_cmd="dotnet run --server.urls http://*:80"
 
 until dotnet ef database update; do

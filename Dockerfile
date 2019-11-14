@@ -17,7 +17,6 @@ RUN dotnet publish "DEV_dashboard_2019.csproj" -c Release -o /app/publish
 FROM base AS final
 COPY . /app
 WORKDIR /app
-RUN chmod +x ./entrypoint.sh
-CMD /bin/bash ./entrypoint.sh
+RUN ./entrypoint.sh
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "DEV_dashboard_2019.dll"]
