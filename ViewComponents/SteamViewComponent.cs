@@ -29,16 +29,19 @@ namespace DEV_dashboard_2019.ViewComponents
             if (!String.IsNullOrEmpty(username))
             {
                 var response = await SteamApiClientFactory.Instance.GetSteamId(username);
-                steamId = response.Response;
-                if (steamId.Success != 1)
+                if (response.Response.Success == 42)
                 {
+                    ViewData["Error"] = "No match";
                     return View(playerAchievementError);
                 }
 
                 if (_context.SteamId.Any()) {
+                    steamId = _context.SteamId.First();
+                    steamId.Id = response.Response.Id;
                     _context.SteamId.Update(steamId);
                 } else
                 {
+                    steamId = response.Response;
                     _context.SteamId.Add(steamId);
                 }
                 await _context.SaveChangesAsync();
@@ -46,16 +49,16 @@ namespace DEV_dashboard_2019.ViewComponents
             {
                 if (_context.SteamId.Any())
                 {
-                    var id = _context.SteamId.First();
-                    steamId = id;
+                    steamId = _context.SteamId.First();
                 } else
                 {
-                    steamId.Id = "76561198175090246";
+                    steamId.Id = "";
                 }
             }
 
             if (String.IsNullOrEmpty(steamId.Id))
             {
+                ViewData["Error"] = "Please enter a steam ID username (username used in your account's steam community URL). Also the account must be public.";
                 return View(playerAchievementError);
             }
 
@@ -64,20 +67,27 @@ namespace DEV_dashboard_2019.ViewComponents
 
             try
             {
-                var playerAchievementsResponse = await steamInterface.GetPlayerAchievementsAsync(440, Convert.ToUInt64(steamId.Id));
+                var playerAchievementsResponse = await steamInterface.GetPlayerAchievementsAsync(252950, Convert.ToUInt64(steamId.Id));
                 var playerAchievementsData = playerAchievementsResponse.Data;
+
+                if (playerAchievementsData.Success == false)
+                {
+                    ViewData["Error"] = "No stats for this account on this game";
+                }
+
                 return View(playerAchievementsData);
             }
-            catch (Exception)
+            catch (HttpRequestException e)
             {
-
+                if (e.HResult == 403)
+                {
+                    ViewData["Error"] = "The account must be public.";
+                } else
+                {
+                    ViewData["Error"] = "No stats for this account on this game.";
+                }
             }
             return View(playerAchievementError);
-        }
-
-        private IViewComponentResult NotFound()
-        {
-            throw new NotImplementedException();
         }
     }
 }

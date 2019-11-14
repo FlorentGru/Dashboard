@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvcMovie.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DEV_dashboard_2019
 {
@@ -28,6 +29,7 @@ namespace DEV_dashboard_2019
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -38,8 +40,9 @@ namespace DEV_dashboard_2019
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+
+               .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -48,7 +51,6 @@ namespace DEV_dashboard_2019
             //     {
             //         IConfigurationSection googleAuthNSection =
             //         Configuration.GetSection("Authentication:Google");
-
             //         options.ClientId = googleAuthNSection["ClientId"];
             //         options.ClientSecret = googleAuthNSection["ClientSecret"];
             //     })
@@ -57,6 +59,15 @@ namespace DEV_dashboard_2019
             //          microsoftOptions.ClientId = "c80d185f-37f2-43d4-b110-af480f5f8e2a";
             //          microsoftOptions.ClientSecret = "GBMvAQ551QFkX[m@P:breS3WqajdQmH/";
             //      });
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
