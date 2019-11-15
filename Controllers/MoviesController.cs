@@ -61,7 +61,6 @@ namespace DEV_dashboard_2019.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
         {
             if (ModelState.IsValid)
@@ -93,7 +92,6 @@ namespace DEV_dashboard_2019.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
         {
             if (id != movie.Id)
@@ -144,7 +142,6 @@ namespace DEV_dashboard_2019.Controllers
 
         // POST: Movies/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var movie = await _context.Movie.FindAsync(id);

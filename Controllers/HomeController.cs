@@ -76,7 +76,6 @@ namespace DEV_dashboard_2019.Controllers
 
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateWeatherWidget([Bind("CityName")] WeatherWidgetConf widgetConf)
         {
             if (ModelState.IsValid && !String.IsNullOrEmpty(widgetConf.CityName))

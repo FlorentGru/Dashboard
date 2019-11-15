@@ -32,16 +32,16 @@ namespace DEV_dashboard_2019
         {
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(
+                options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<MvcMovieContext>(options =>
-                options.UseSqlite(
+                options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<SteamIdContext>(options =>
-                options.UseSqlite(
+                options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<WidgetConfigurationDbContext>(options =>
-                options.UseSqlite(
+                options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
