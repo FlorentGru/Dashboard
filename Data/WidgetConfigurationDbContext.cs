@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace DEV_dashboard_2019.Data
 {
-    public class SteamIdContext : DbContext
+    public class WidgetConfigurationDbContext : DbContext
     {
-        public SteamIdContext(DbContextOptions<SteamIdContext> options)
+        public WidgetConfigurationDbContext(DbContextOptions<WidgetConfigurationDbContext> options)
             : base(options)
         {
         }
 
-        public DbSet<SteamId> SteamId { get; set; }
-
+        public DbSet<WeatherWidgetConf> WeatherConf { get; set; }
     }
 }

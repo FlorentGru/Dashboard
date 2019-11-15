@@ -1,0 +1,29 @@
+﻿@model DEV_dashboard_2019.Models.WeatherWidgetConf
+
+@{
+    ViewData["Title"] = "Create Weather Widget";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Configuration</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateWeatherWidget">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CityName" class="control-label"></label>
+                <input asp-for="CityName" class="form-control" />
+                <span asp-validation-for="CityName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="CreateWeatherWidget" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Widget">Back to Dashboard</a>
+</div>

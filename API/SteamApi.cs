@@ -1,7 +1,6 @@
 ﻿using DEV_dashboard_2019.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DEV_dashboard_2019.API
@@ -13,7 +12,7 @@ namespace DEV_dashboard_2019.API
             BaseEndpoint = new Uri("http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/");
         }
 
-        public async Task<SteamResponse> GetSteamId(string username)
+        public async Task<SteamResponse> GetSteamIdAsync(string username)
         {
             var queryParams = new Dictionary<string, string>()
             {

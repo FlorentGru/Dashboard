@@ -11,7 +11,6 @@ namespace DEV_dashboard_2019.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            this.Database.EnsureCreated();
         }
     }
 }

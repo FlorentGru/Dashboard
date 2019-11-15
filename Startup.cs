@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MvcMovie.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace DEV_dashboard_2019
 {
@@ -38,10 +39,13 @@ namespace DEV_dashboard_2019
             services.AddDbContext<SteamIdContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<WidgetConfigurationDbContext>(options =>
+                options.UseSqlite(
+                    Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-
                .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
 
@@ -54,21 +58,6 @@ namespace DEV_dashboard_2019
                 options.Password.RequiredLength = 6;
                 options.Password.RequiredUniqueChars = 1;
             });
-
-            services.AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    IConfigurationSection googleAuthNSection =
-                    Configuration.GetSection("Authentication:Google");
-
-                    options.ClientId = googleAuthNSection["ClientId"];
-                    options.ClientSecret = googleAuthNSection["ClientSecret"];
-                })
-                .AddMicrosoftAccount(microsoftOptions =>
-                 {
-                     microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ClientId"];
-                     microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
-                 });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

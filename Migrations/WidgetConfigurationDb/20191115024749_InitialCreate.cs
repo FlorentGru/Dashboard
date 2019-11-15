@@ -1,30 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DEV_dashboard_2019.Migrations.SteamId
+namespace DEV_dashboard_2019.Migrations.WidgetConfigurationDb
 {
-    public partial class InitiaCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "SteamId",
+                name: "WeatherConf",
                 columns: table => new
                 {
-                    Key = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Id = table.Column<string>(nullable: true),
-                    Success = table.Column<int>(nullable: false)
+                    UserId = table.Column<string>(nullable: true),
+                    CityName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SteamId", x => x.Key);
+                    table.PrimaryKey("PK_WeatherConf", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "SteamId");
+                name: "WeatherConf");
         }
     }
 }

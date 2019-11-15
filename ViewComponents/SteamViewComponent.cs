@@ -28,7 +28,7 @@ namespace DEV_dashboard_2019.ViewComponents
             playerAchievementError.Success = false;
             if (!String.IsNullOrEmpty(username))
             {
-                var response = await SteamApiClientFactory.Instance.GetSteamId(username);
+                var response = await ApiClientFactory.SteamInstance.GetSteamIdAsync(username);
                 if (response.Response.Success == 42)
                 {
                     ViewData["Error"] = "No match";

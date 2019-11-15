@@ -8,26 +8,27 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DEV_dashboard_2019.Migrations.SteamId
 {
     [DbContext(typeof(SteamIdContext))]
-    [Migration("20191109052612_InitiaCreate")]
-    partial class InitiaCreate
+    [Migration("20191114172227_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.0.0");
+                .HasAnnotation("ProductVersion", "3.0.0")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("DEV_dashboard_2019.Models.SteamId", b =>
                 {
                     b.Property<int>("Key")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Success")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.HasKey("Key");
 

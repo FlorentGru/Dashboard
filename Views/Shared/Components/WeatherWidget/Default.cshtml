@@ -1,0 +1,63 @@
+﻿@model WeatherModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Weather.css" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="widget-container">
+            <div class="top-left">
+                <h1 class="city" id="city">@Html.DisplayFor(model => model.Name), @Html.DisplayFor(model => model.Sys.Country)</h1>
+                <h3 id="time">@Html.DisplayFor(model => model.LongDate)</h3>
+                <p class="geo"></p>
+            </div>
+            <div class="top-right">
+                <h1 id="weather-status">@Html.DisplayFor(model => model.Weather.First().Main) / @Html.DisplayFor(model => model.Weather.First().Description)</h1>
+                <img src=@ViewData["Icon"] alt="Weather Icon">
+            </div>
+            <div class="horizontal-half-divider"></div>
+            <div class="bottom-left">
+                <h1 id="temperature">@Html.DisplayFor(model => model.Main.Temp)</h1>
+                <h2 id="celsius">&degC</h2>
+            </div>
+            <div class="vertical-half-divider"></div>
+            <div class="bottom-right">
+                <div class="other-details-key">
+                    <p>Clouds</p>
+                    <p>Humidity</p>
+                    <p>Pressure</p>
+                    <p>Temperature Min</p>
+                    <p>Temperature Max</p>
+                </div>
+                <div class="other-details-values">
+                    <p class="windspeed">@Html.DisplayFor(model => model.Clouds.All) %</p>
+                    <p class="humidity">@Html.DisplayFor(model => model.Main.Humidity) %</p>
+                    <p class="pressure">@Html.DisplayFor(model => model.Main.Pressure) hPa</p>
+                    <p class="sunrise-time">@Html.DisplayFor(model => model.Main.Temp_Min) &degC</p>
+                    <p class="sunset-time">@Html.DisplayFor(model => model.Main.Temp_Max) &degC</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="shadow p-3 s-5 bg-white rounded border" style="width:555px;border">
+        <h3>Weather in @Html.DisplayFor(model => model.Name), @Html.DisplayFor(model => model.Sys.Country)</h3>
+        <dl class="row">
+            <dt>
+                @Html.DisplayFor(model => model.Weather.First().Main)
+                <img src=@ViewData["Icon"] alt="Weather Icon" />
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Weather.First().Description)
+            </dd>
+        </dl>
+    </div>*@
+</body>
+</html>
