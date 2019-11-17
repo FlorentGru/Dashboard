@@ -30,10 +30,10 @@ namespace DEV_dashboard_2019
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(
+                options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<WidgetConfigurationDbContext>(options =>
-                options.UseSqlite(
+                options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
@@ -64,7 +64,6 @@ namespace DEV_dashboard_2019
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -82,12 +81,6 @@ namespace DEV_dashboard_2019
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                context.Database.EnsureCreated();
-            }
         }
     }
 }

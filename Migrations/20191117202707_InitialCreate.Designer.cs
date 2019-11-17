@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DEV_dashboard_2019.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191114172059_InitialCreate")]
+    [Migration("20191117202707_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,6 +18,127 @@ namespace DEV_dashboard_2019.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("DEV_dashboard_2019.Models.AchievementWidgetConf", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("AppId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SteamId")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AchievementConf");
+                });
+
+            modelBuilder.Entity("DEV_dashboard_2019.Models.FriendListWidgetConf", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("SteamId")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FriendListConf");
+                });
+
+            modelBuilder.Entity("DEV_dashboard_2019.Models.WeatherWidgetConf", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CityName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WeatherConf");
+                });
+
+            modelBuilder.Entity("DEV_dashboard_2019.Models.WidgetConf.DetailWidgetConf", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DetailConf");
+                });
+
+            modelBuilder.Entity("DEV_dashboard_2019.Models.WidgetConf.MovieWidgetConf", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Search")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MovieConf");
+                });
+
+            modelBuilder.Entity("DEV_dashboard_2019.Models.WidgetConf.TrendWidgetConf", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Media")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Time")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TrendConf");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {

@@ -20,10 +20,10 @@ namespace DEV_dashboard_2019.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly WidgetConfigurationDbContext _configContext;
+        private readonly ApplicationDbContext _configContext;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public HomeController(WidgetConfigurationDbContext context, UserManager<IdentityUser> userManager)
+        public HomeController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _configContext = context;
             _userManager = userManager;
