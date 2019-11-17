@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TMDbLib.Objects.Search.SearchMovie>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Default</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="card text-white bg-dark mb-3" style="width:555px;height:300px;border">
+        <div class="row card-header">
+            <b>Movie Search for "@ViewData["Search"]"</b>
+            <form asp-action="DeleteMovie">
+                <input type="number" name="id" class="btn btn-primary" value="@ViewData["Id"]" style="display:none" />
+                <input type="submit" class="btn btn-primary" value="Delete" />
+            </form>
+        </div>
+        <div class="card-body" style="width:550px;overflow-y:scroll;overflow-x:hidden">
+            @foreach (var item in Model)
+            {
+            <div class="row card-title">
+                <div class="col-sm-3 card-img">
+                    <img src=@item.PosterPath style="width:120px;height:160px" />
+                </div>
+                <div class="col-sm-9">
+                    <div class="card-title">
+                        <b>@Html.DisplayFor(model => item.OriginalTitle)</b>
+                    </div>
+                    <div class="card-text" id="description">
+                        @Html.DisplayFor(model => item.Overview)
+                    </div>
+                    <div class="card-text">Realised the @Html.DisplayFor(model => item.ReleaseDate.Value.Day)/@Html.DisplayFor(model => item.ReleaseDate.Value.Month)/@Html.DisplayFor(model => item.ReleaseDate.Value.Year)</div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

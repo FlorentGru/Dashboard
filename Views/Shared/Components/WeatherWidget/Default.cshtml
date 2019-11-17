@@ -12,21 +12,26 @@
     <link rel="stylesheet" href="~/css/Weather.css" />
 </head>
 <body>
-    <div class="wrapper">
-        <div class="widget-container">
+    <div class="wrapper card border-white">
+        <div class="widget-container bg-dark">
             <div class="top-left">
                 <h1 class="city" id="city">@Html.DisplayFor(model => model.Name), @Html.DisplayFor(model => model.Sys.Country)</h1>
                 <h3 id="time">@Html.DisplayFor(model => model.LongDate)</h3>
                 <p class="geo"></p>
             </div>
             <div class="top-right">
-                <h1 id="weather-status">@Html.DisplayFor(model => model.Weather.First().Main) / @Html.DisplayFor(model => model.Weather.First().Description)</h1>
-                <img src=@ViewData["Icon"] alt="Weather Icon">
+
+                <h1 id="temperature">@Html.DisplayFor(model => model.Main.Temp)</h1>
+                <h2 id="celsius">&degC</h2>
+                <form asp-action="DeleteWeather">
+                    <input type="number" name="id" class="btn btn-primary" value="@ViewData["Id"]" style="display:none" />
+                    <input type="submit" class="btn btn-primary" value="Delete" />
+                </form>
             </div>
             <div class="horizontal-half-divider"></div>
             <div class="bottom-left">
-                <h1 id="temperature">@Html.DisplayFor(model => model.Main.Temp)</h1>
-                <h2 id="celsius">&degC</h2>
+                <h1 id="weather-status"><b>@Html.DisplayFor(model => model.Weather.First().Main) / @Html.DisplayFor(model => model.Weather.First().Description)</b></h1>
+                <img src=@ViewData["Icon"] alt="Weather Icon">
             </div>
             <div class="vertical-half-divider"></div>
             <div class="bottom-right">
@@ -47,17 +52,5 @@
             </div>
         </div>
     </div>
-    @*<div class="shadow p-3 s-5 bg-white rounded border" style="width:555px;border">
-        <h3>Weather in @Html.DisplayFor(model => model.Name), @Html.DisplayFor(model => model.Sys.Country)</h3>
-        <dl class="row">
-            <dt>
-                @Html.DisplayFor(model => model.Weather.First().Main)
-                <img src=@ViewData["Icon"] alt="Weather Icon" />
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Weather.First().Description)
-            </dd>
-        </dl>
-    </div>*@
 </body>
 </html>

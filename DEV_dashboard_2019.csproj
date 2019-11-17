@@ -23,6 +23,7 @@
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.18" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.0.0-rc1.final" />
     <PackageReference Include="SteamWebAPI2" Version="4.0.9" />
+    <PackageReference Include="TMDbLib" Version="1.4.0" />
   </ItemGroup>
 
   <ItemGroup>

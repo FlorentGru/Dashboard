@@ -9,6 +9,41 @@ namespace DEV_dashboard_2019.Models
 {
     public class WeatherModel
     {
+        public WeatherModel()
+        {
+           
+        }
+
+        public WeatherModel(string error)
+        {
+            ActualDate = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            Main = new Main
+            {
+                Humidity = 0,
+                Pressure = 0,
+                Temp = 0,
+                Temp_Max = 0,
+                Temp_Min = 0,
+            };
+            Name = "Unknown";
+            Clouds = new Cloud
+            {
+                All = 0
+            };
+            Sys = new Sys
+            {
+                Country = "XX"
+            };
+            Weather = new List<Weather>();
+            var weather = new Weather
+            {
+                Main = "Nothing",
+                Description = "Idem",
+                Icon = "01n"
+            };
+            Weather.Add(weather);
+        }
+
         [DataMember(Name = "weather")]
         public IList<Weather> Weather { get; set; }
 

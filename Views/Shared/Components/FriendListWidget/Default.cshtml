@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Steam.Models.SteamCommunity.PlayerSummaryModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Default</title>
+</head>
+<body>
+    <div class="card text-white bg-dark mb-3" style="width:555px;height:300px;border">
+        <div class="row card-header">
+            <b>@ViewData["Username"]'s friend list</b>
+            <form asp-action="DeleteFriendList">
+                <input type="number" name="id" class="btn btn-primary" value="@ViewData["Id"]" style="display:none" />
+                <input type="submit" class="btn btn-primary" value="Delete" />
+            </form>
+        </div>
+        <div class="card-body" style="width:550px;overflow-y:scroll;overflow-x:hidden">
+            @foreach (var item in Model)
+            {
+                <div class="card-title">
+                    <img class="card-img" src=@item.AvatarFullUrl style="width:80px;height:80px" />
+                    <b>@Html.DisplayFor(model => item.Nickname)</b> is
+                    @if (!String.IsNullOrEmpty(item.PlayingGameName) && item.UserStatus == Steam.Models.SteamCommunity.UserStatus.InGame)
+                    {
+                <div class="d-inline"> playing @Html.DisplayFor(model => item.PlayingGameName)</div>
+                    }
+                    else if (item.UserStatus == Steam.Models.SteamCommunity.UserStatus.Offline)
+                    {
+                <div class="d-inline"> offline (last logged on @Html.DisplayTextFor(model => item.LastLoggedOffDate.Day)/@Html.DisplayTextFor(model => item.LastLoggedOffDate.Month))</div>
+                    }
+                    else
+                    {
+                    <div class="d-inline"> online...</div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

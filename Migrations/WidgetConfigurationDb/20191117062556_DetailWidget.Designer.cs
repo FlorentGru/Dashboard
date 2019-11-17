@@ -2,14 +2,16 @@
 using DEV_dashboard_2019.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DEV_dashboard_2019.Migrations.WidgetConfigurationDb
 {
     [DbContext(typeof(WidgetConfigurationDbContext))]
-    partial class WidgetConfigurationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191117062556_DetailWidget")]
+    partial class DetailWidget
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

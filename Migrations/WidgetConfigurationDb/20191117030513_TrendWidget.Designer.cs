@@ -2,14 +2,16 @@
 using DEV_dashboard_2019.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DEV_dashboard_2019.Migrations.WidgetConfigurationDb
 {
     [DbContext(typeof(WidgetConfigurationDbContext))]
-    partial class WidgetConfigurationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191117030513_TrendWidget")]
+    partial class TrendWidget
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,24 +75,6 @@ namespace DEV_dashboard_2019.Migrations.WidgetConfigurationDb
                     b.HasKey("Id");
 
                     b.ToTable("WeatherConf");
-                });
-
-            modelBuilder.Entity("DEV_dashboard_2019.Models.WidgetConf.DetailWidgetConf", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DetailConf");
                 });
 
             modelBuilder.Entity("DEV_dashboard_2019.Models.WidgetConf.MovieWidgetConf", b =>

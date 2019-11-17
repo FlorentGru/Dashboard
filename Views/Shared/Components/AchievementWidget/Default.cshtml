@@ -1,0 +1,47 @@
+﻿@model Steam.Models.SteamPlayer.PlayerAchievementResultModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Default</title>
+</head>
+<body>
+    @if (Model.Success)
+    {
+    <div class="card text-white bg-dark mb-3" style="width:555px;height:300px;border">
+        <div class="row card-header">
+            <b>@ViewData["Username"]'s @Html.DisplayFor(model => model.GameName) Achievements</b>
+            <form asp-action="DeleteAchievement">
+                <input type="number" name="id" class="btn btn-primary" value="@ViewData["Id"]" style="display:none" />
+                <input type="submit" class="btn btn-primary" value="Delete" />
+            </form>
+        </div>
+        <div class="card-body" style="width:550px;overflow-y:scroll;overflow-x:hidden">
+            @foreach (var item in Model.Achievements)
+            {
+                @if (item.Achieved == 1)
+                {
+                    <div class="card-text">
+                        <b>@Html.DisplayFor(model => item.Name)</b>
+                    </div>
+                    <div class="card-title">
+                        @Html.DisplayFor(model => item.Description)
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    }
+    else
+    {
+        <h4 style="color:red">@ViewData["Error"]</h4>
+    }
+
+</body>
+</html>

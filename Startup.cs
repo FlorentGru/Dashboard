@@ -12,7 +12,6 @@ using DEV_dashboard_2019.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MvcMovie.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 
@@ -30,14 +29,7 @@ namespace DEV_dashboard_2019
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<MvcMovieContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<SteamIdContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<WidgetConfigurationDbContext>(options =>
@@ -50,19 +42,6 @@ namespace DEV_dashboard_2019
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            // services.AddAuthentication()
-            //     .AddGoogle(options =>
-            //     {
-            //         IConfigurationSection googleAuthNSection =
-            //         Configuration.GetSection("Authentication:Google");
-            //         options.ClientId = googleAuthNSection["ClientId"];
-            //         options.ClientSecret = googleAuthNSection["ClientSecret"];
-            //     })
-            //     .AddMicrosoftAccount(microsoftOptions =>
-            //      {
-            //          microsoftOptions.ClientId = "c80d185f-37f2-43d4-b110-af480f5f8e2a";
-            //          microsoftOptions.ClientSecret = "GBMvAQ551QFkX[m@P:breS3WqajdQmH/";
-            //      });
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = true;
@@ -103,6 +82,12 @@ namespace DEV_dashboard_2019
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                context.Database.EnsureCreated();
+            }
         }
     }
 }

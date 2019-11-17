@@ -2,14 +2,16 @@
 using DEV_dashboard_2019.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DEV_dashboard_2019.Migrations.WidgetConfigurationDb
 {
     [DbContext(typeof(WidgetConfigurationDbContext))]
-    partial class WidgetConfigurationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191116202308_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,24 +77,6 @@ namespace DEV_dashboard_2019.Migrations.WidgetConfigurationDb
                     b.ToTable("WeatherConf");
                 });
 
-            modelBuilder.Entity("DEV_dashboard_2019.Models.WidgetConf.DetailWidgetConf", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("DetailConf");
-                });
-
             modelBuilder.Entity("DEV_dashboard_2019.Models.WidgetConf.MovieWidgetConf", b =>
                 {
                     b.Property<int>("Id")
@@ -112,28 +96,6 @@ namespace DEV_dashboard_2019.Migrations.WidgetConfigurationDb
                     b.HasKey("Id");
 
                     b.ToTable("MovieConf");
-                });
-
-            modelBuilder.Entity("DEV_dashboard_2019.Models.WidgetConf.TrendWidgetConf", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Media")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Time")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TrendConf");
                 });
 #pragma warning restore 612, 618
         }

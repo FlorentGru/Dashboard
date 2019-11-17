@@ -3,9 +3,24 @@
     ViewData["Title"] = "AddWidget";
 }
 
-
-    <div class="shadow border" style="width:400px">
-        <a asp-action="CreateWeatherWidget">
-            <img src="https://www.diariolosciudadanos.com/wp-content/uploads/2019/01/weather.jpg" style="width:400px;height:250px;" alt="Weather Widget"/>
+    <div class="row">
+        <a style="width:380px;height:250px;" asp-action="CreateWeatherWidget">
+            <img src="https://www.diariolosciudadanos.com/wp-content/uploads/2019/01/weather.jpg" style="width:380px;height:250px;" alt="Weather Widget" />
+        </a>
+        <a style="width:380px;height:250px;" asp-action="CreateAchievementWidget">
+            <img src="~/img/SteamWidget.png" style="width:380px;height:250px;" alt="Achievement Widget" />
+        </a>
+        <a style="width:380px;height:250px;" asp-action="CreateFriendListWidget">
+            <img src="~/img/FriendWidget.png" style="width:380px;height:250px;" alt="Friend List Widget" />
+        </a>
+        <br />
+        <a style="width:380px;height:250px;" asp-action="CreateMovieWidget">
+            <img src="~/img/movieDb.png" style="width:380px;height:250px;" alt="Movie Widget" />
+        </a>
+        <a style="width:380px;height:250px;" asp-action="CreateTrendWidget">
+            <img src="~/img/trendSearch.png" style="width:380px;height:250px;" alt="Trend Widget" />
+        </a>
+        <a style="width:380px;height:250px;" asp-action="CreateDetailWidget">
+            <img src="~/img/details.png" style="width:380px;height:250px;" alt="Movie Details Widget" />
         </a>
     </div>

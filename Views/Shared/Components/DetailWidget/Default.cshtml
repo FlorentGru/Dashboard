@@ -1,0 +1,60 @@
+﻿@model TMDbLib.Objects.Movies.Movie
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Default</title>
+</head>
+<body>
+    <div class="card text-white bg-dark mb-3" style="width:555px;height:300px;border">
+        @if (!String.IsNullOrEmpty(Model.Title))
+        {
+        <div class="row card-header">
+            <b>@Html.DisplayFor(model => model.Title)</b>
+            @if (Model.Title != Model.OriginalTitle)
+            {
+                <b>(original title: @Html.DisplayFor(model => model.OriginalTitle))</b>
+            }
+            <form asp-action="DeleteDetail">
+                <input type="number" name="id" class="btn btn-primary" value="@ViewData["Id"]" style="display:none" />
+                <input type="submit" class="btn btn-primary" value="Delete" />
+            </form>
+        </div>
+            <div class="card-body" style="width:550px;overflow-y:scroll;overflow-x:hidden">
+                    <img src=@Model.BackdropPath style="width:495px;height:auto" />
+                    <div class="card-text">
+                        Original language: @Model.OriginalLanguage
+                    </div>
+                    <div class="card-text">
+                        Realise date: @Html.DisplayFor(model => model.ReleaseDate.Value.Day)/@Html.DisplayFor(model => model.ReleaseDate.Value.Month)/@Html.DisplayFor(model => model.ReleaseDate.Value.Year)
+                    </div>
+                    <div class="card-text">
+                        Genre:
+                        @foreach (var item in Model.Genres)
+                        {
+                            @item.Name<span> </span>
+                        }
+                    </div>
+                    <div class="card-text">
+                        Budget: @Html.DisplayFor(model => model.Budget) $, 
+                        Revenue: @Html.DisplayFor(model => model.Revenue) $
+                    </div>
+                    <div class="card-text">
+                        Popularity: @Html.DisplayFor(model => model.Popularity), 
+                        Vote average: @Html.DisplayFor(model => model.VoteAverage)
+                    </div>
+                </div>
+        }
+        else
+        {
+            <div class="card-header"><b>@ViewData["Error"]</b></div>
+        }
+    </div>
+</body>
+</html>
