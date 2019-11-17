@@ -32,7 +32,7 @@
                     <div class="card-title">
                         <b>@Html.DisplayFor(model => item.OriginalTitle)</b>
                     </div>
-                    <div class="card-text" id="description">
+                    <div class="card-text" style="height:100px;overflow-y:scroll" id="description">
                         @Html.DisplayFor(model => item.Overview)
                     </div>
                     <div class="card-text">Realised the @Html.DisplayFor(model => item.ReleaseDate.Value.Day)/@Html.DisplayFor(model => item.ReleaseDate.Value.Month)/@Html.DisplayFor(model => item.ReleaseDate.Value.Year)</div>

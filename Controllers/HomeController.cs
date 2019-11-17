@@ -56,7 +56,6 @@ namespace DEV_dashboard_2019.Controllers
 
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateWeatherWidget([Bind("CityName")] WeatherWidgetConf widgetConf)
         {
             if (ModelState.IsValid && !String.IsNullOrEmpty(widgetConf.CityName))
@@ -87,7 +86,6 @@ namespace DEV_dashboard_2019.Controllers
 
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateAchievementWidget([Bind("Username, AppId")] AchievementWidgetConf widgetConf)
         {
             ViewData["Error"] = "";
@@ -121,7 +119,6 @@ namespace DEV_dashboard_2019.Controllers
 
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateFriendListWidget([Bind("Username")] FriendListWidgetConf widgetConf)
         {
             ViewData["Error"] = "";
@@ -155,7 +152,6 @@ namespace DEV_dashboard_2019.Controllers
 
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateMovieWidget([Bind("Search, Year")] MovieWidgetConf widgetConf)
         {
             ViewData["Error"] = "";
@@ -180,7 +176,6 @@ namespace DEV_dashboard_2019.Controllers
 
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateTrendWidget([Bind("Media, Time")] TrendWidgetConf widgetConf)
         {
             ViewData["Error"] = "";
@@ -205,7 +200,6 @@ namespace DEV_dashboard_2019.Controllers
 
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateDetailWidget([Bind("Name")] DetailWidgetConf widgetConf)
         {
             ViewData["Error"] = "";
@@ -276,7 +270,6 @@ namespace DEV_dashboard_2019.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteWeather(int id)
         {
             var widget = await _configContext.WeatherConf.FindAsync(id);
@@ -286,7 +279,6 @@ namespace DEV_dashboard_2019.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteFriendList(int id)
         {
             var widget = await _configContext.FriendListConf.FindAsync(id);
@@ -296,7 +288,6 @@ namespace DEV_dashboard_2019.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteAchievement(int id)
         {
             var widget = await _configContext.AchievementConf.FindAsync(id);
@@ -306,7 +297,6 @@ namespace DEV_dashboard_2019.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteMovie(int id)
         {
             var widget = await _configContext.MovieConf.FindAsync(id);
@@ -316,7 +306,6 @@ namespace DEV_dashboard_2019.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteDetail(int id)
         {
             var widget = await _configContext.DetailConf.FindAsync(id);
@@ -326,7 +315,6 @@ namespace DEV_dashboard_2019.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteTrend(int id)
         {
             var widget = await _configContext.TrendConf.FindAsync(id);

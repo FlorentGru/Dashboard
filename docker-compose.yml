@@ -1,17 +1,32 @@
 version: "3"
 services:
-    webapp:
-        build:
-            context: .
-            dockerfile: Dockerfile
-        ports:
-        - "8080:80"
-    mysql-development:
-        image: mysql
+    db:
+        image: mysql:latest
         environment:
-            MYSQL_ROOT_PASSWORD: helloworld
-            MYSQL_DATABASE: dev_dashboard
+            MYSQL_DATABASE: "dashboarddb2"
+            MYSQL_USER: "user"
+            MYSQL_PASSWORD: "helloworld"
+            MYSQL_ROOT_PASSWORD: "helloworld"
         ports:
-        - "3308:3306"
+            - "3306:3306"
         expose:
-            - '3306'
+            - "3306"
+        volumes:
+            - my-db:/var/lib/mysql
+    web:
+        build: .
+        image: dashboard
+        ports:
+            - "8080:80"
+        depends_on:
+            - db
+volumes:
+  my-db:
+
+# version: '3'
+# services:
+#   web:
+#     build: .
+#     ports:
+#       - "8080:80"
+#     image: dashboard
