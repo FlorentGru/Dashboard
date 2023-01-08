@@ -1,0 +1,110 @@
+# Dashboard
+
+
+This dashboard allows you to connect and create your own dashboard using 6 different widgets from 3 services :
+
+  - OpenWeatherApp
+  - Steam
+  - The movie db
+
+It was created using ASP.NET core 3.0 with MVC and Entity Framework
+
+Usage *(in terminal)*:
+`docker-compose build && docker-compose up`
+
+Here is the list of widgets per service available on this dashboard...
+
+# OpenWeather
+
+ - ## Weather Widget
+
+     Displays the weather informations for a given city.
+     You can create this widget by telling the city name.
+     
+     Informations displayed on this widget:
+    - Country
+    - Date
+    - Temperature in celcius
+    - Cloud percentage
+    - Humidity percentage
+    - Pressure in HPa
+    - Max temperature in celcius
+    - Max temperature in celcius
+
+
+# Steam
+
+ - ## Achievement Widget
+    Displays the achievements made by a steam user for a given game.
+    You can create this widget by telling:
+    - User's vanity URL (e.g. steamcommunity.com/id/gabelogannewell would use "gabelogannewell")
+    - APP ID which on can get on this site : https://steamdb.info/apps/.
+
+    Informations displayed on this widget:
+    
+    - Achievement list
+    
+        - Achievement title
+        - Achievement description
+        
+ - ## Friend List Widget
+    Displays the friend list of a steam user.
+    You can create this widget by telling: 
+     - User's vanity URL (e.g. steamcommunity.com/id/gabelogannewell would use "gabelogannewell").
+
+    Informations displayed on this widget:
+    
+    - Friend list
+    
+        - Avatar
+        - Username
+        - Logging  state (offline, online, playing *which game*)
+        
+# The Movie Db
+
+ - ## Movie Search Widget
+    Displays the list of movies related to a given query
+    You can create this widget by telling: 
+    - Movie title 
+    - Year of release *(optional: default value to 0 for no specification)*
+
+    Informations displayed on this widget:
+    
+     - Movie list:
+     
+        - Poster
+        - Title
+        - Description/Overview
+        - Release date
+
+
+ - ## Trending Widget
+    Displays the list of trending movies or tv shows of the day or week
+    You can create this widget by telling the media *(two options: movie or tv show)*
+    and the time window *(two option: day or week)*
+
+    Informations displayed on this widget:
+    
+    - Movie or Tv show list:
+    
+        - Poster
+        - Title
+        - Description/Overview
+        - Release date
+        
+ - ## Movie Details Widget
+    Displays the details of given movie title
+    You can create this widget by telling the movie title
+
+    Informations displayed on this widget:
+    
+    - Title
+    - Original Title
+    - Release date
+    - Budget in $
+    - Revenu in $
+    - Popularity
+    - Vote average
+ 
+ 
+ That's all!
